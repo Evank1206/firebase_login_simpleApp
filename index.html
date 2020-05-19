@@ -1,12 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css" />
     <title>FireBase login App</title>
 </head>
+
 <body>
-    
-    
+    <main>
+        <h1>Fire-Base Login Page</h1>
+        <div>
+            <label>User E_mail: </label>
+            <input type="email" id="UserNameEmail" placeholder="user name" />
+            <label>Password: </label>
+            <input type="password" id="PasswordInput" />
+            <input type="button" value="resgister" id="resgisterBtn"/>
+            <input type="submit" value="login" id="login"/>
+            <input type="submit" value="logout" id="logout"/>
+        </div>
+
+    </main>
+    <!-- firebase cdn -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-auth.js"></script>
+    <!-- jQuery sdk -->
+    <script
+    src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+    <!-- js ipmort -->
+    <script src="./app.js"></script>
 </body>
+
 </html>
