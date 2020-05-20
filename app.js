@@ -17,19 +17,50 @@ $(document).ready(function () {
     const db = firebase.database();
     const auth = firebase.auth();
 
+    let currentUser = "";
+    // console.log(currentUser);
+
     // onAuthStateChanges() function
     auth.onAuthStateChanged(user => {
 
         if (user) { //if user true 
-            console.log("signed in");
+            console.log("logged in:" + user.uid);
+            currentUser = user.uid;
+            $("#formContainer").hide();
+            $("main").append("<input type='text' id='todoText'/><input type='button' value='Submit' id='submitBtn'/>");
+            // $("main").append("<input type='button' id='logOutFromUserBtn' value='LogOut'/>");
+
+  
+
         } else { // if not true
-            console.log("not signed in");
+            // console.log("not signed in");
             auth.signOut();
+            $("main").show();
+            // $("main").empty();
+            
 
         }
     });
 
+    // $(document).on('click', "#logOutFromUserBtn", function (e) {
+    //     e.preventDefault();
+    //     auth.signOut();
+    //     // $("main").show();
+    // })
 
+    $(document).on("click", "#submitBtn", function(e){
+        e.preventDefault();
+       let UserLoggedPageInputValue =  $("#todoText").val();
+    //    console.log(UserLoggedPageInputValue);
+    db.ref(currentUser).set({
+        UserLoggedPageInputValue: UserLoggedPageInputValue
+    })
+      console.log(currentUser);
+       
+
+    })
+
+    
     // sign out function
     $("#logout").on("click", function (e) {
         e.preventDefault();
@@ -48,9 +79,9 @@ $(document).ready(function () {
         const email = $("#UserNameEmail").val();
         const password = $("#PasswordInput").val();
         // and then createUserWithEmailAndPassword function grab that input value to create user email&password
-        if(email && password == 0){
+        if (email && password == 0) {
             alert("enter email address")
-        }else{
+        } else {
             auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
                 if (error) {
                     console.log(error);
@@ -58,7 +89,7 @@ $(document).ready(function () {
             })
 
         }
-      
+
 
 
     });

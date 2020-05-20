@@ -10,27 +10,30 @@
 
 <body>
     <main>
-        <h1>Fire-Base Login Page</h1>
-        <div>
-            <label>User E_mail: </label>
-            <input type="email" id="UserNameEmail" placeholder="user name" />
-            <label>Password: </label>
-            <input type="password" id="PasswordInput" />
-            <input type="button" value="resgister" id="resgisterBtn"/>
-            <input type="submit" value="login" id="login"/>
-            <input type="submit" value="logout" id="logout"/>
-        </div>
 
+        <h1>Login in User Page</h1>
+
+        <form id="formContainer">
+            <h1>Fire-Base Register Page</h1>
+            <div>
+                <label>User E_mail: </label>
+                <input type="email" id="UserNameEmail" placeholder="user name" />
+                <label>Password: </label>
+                <input type="password" id="PasswordInput" />
+                <input type="button" value="resgister" id="resgisterBtn" />
+                <input type="submit" value="login" id="login" />
+                <input type="submit" value="logout" id="logout" />
+            </div>
+        </form>
+        
     </main>
     <!-- firebase cdn -->
     <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-auth.js"></script>
     <!-- jQuery sdk -->
-    <script
-    src="https://code.jquery.com/jquery-3.5.1.js"
-    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <!-- js ipmort -->
     <script src="./app.js"></script>
 </body>
