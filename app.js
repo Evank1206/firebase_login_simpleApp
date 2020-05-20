@@ -17,26 +17,63 @@ $(document).ready(function () {
     const db = firebase.database();
     const auth = firebase.auth();
 
-// register button here initialize user inputs value from 
+    // onAuthStateChanges() function
+    auth.onAuthStateChanged(user => {
+
+        if (user) { //if user true 
+            console.log("signed in");
+        } else { // if not true
+            console.log("not signed in");
+            auth.signOut();
+
+        }
+    });
+
+
+    // sign out function
+    $("#logout").on("click", function (e) {
+        e.preventDefault();
+
+        auth.signOut().then(function () {
+            console.log("it's logined out");
+
+        })
+    })
+
+
+    // register button here initialize user inputs value from 
     $("#resgisterBtn").on("click", (e) => {
         e.preventDefault();
 
         const email = $("#UserNameEmail").val();
         const password = $("#PasswordInput").val();
-// and then createUserWithEmailAndPassword function grab that input value to create user email&password
-        auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
-            if (error) {
-                console.log(error);
-            }
+        // and then createUserWithEmailAndPassword function grab that input value to create user email&password
+        if(email && password == 0){
+            alert("enter email address")
+        }else{
+            auth.createUserWithEmailAndPassword(email, password).catch(function (error) {
+                if (error) {
+                    console.log(error);
+                }
+            })
+
+        }
+      
 
 
-
-        })
     });
-    $("#logout").on("click", function(){
-        auth.signOut().then(function(){
-            console.log("it's logined out");
-            
+    // login user
+    $("#login").on("click", function (e) {
+        e.preventDefault();
+
+        const email = $("#UserNameEmail").val();
+        const password = $("#PasswordInput").val();
+
+        auth.signInWithEmailAndPassword(email, password).catch(err => {
+            if (err) {
+                console.log(err);
+
+            }
         })
     })
 
