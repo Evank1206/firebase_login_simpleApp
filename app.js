@@ -18,59 +18,54 @@ $(document).ready(function () {
     const auth = firebase.auth();
 
     let currentUser = "";
-    // console.log(currentUser);
 
     // onAuthStateChanges() function
     auth.onAuthStateChanged(user => {
 
-        if (user) { //if user true 
-            console.log("logged in:" + user.uid);
-            currentUser = user.uid;
+        if (user) {     //if user true 
+            console.log("User-Logged-In: " + user.uid);
+            currentUser = user.uid;     //save user/unique ID to in variable
             $("#formContainer").hide();
-            $("main").append("<input type='text' id='todoText'/><input type='button' value='Submit' id='submitBtn'/>");
-            // $("main").append("<input type='button' id='logOutFromUserBtn' value='LogOut'/>");
+            // user page TEXT
+            const userPageText = $("<h1/>");
+            userPageText.text("Login in User Page");
+            $(".UserContainer").append(userPageText);
+            // USER PAGE input & button
+            $(".UserContainer").append("<input type='text' id='todoText'/><input type='button' value='Submit' id='submitBtn'/>");
+            // USER PAGE logOut button From
+            $(".UserContainer").append("<input type='button' id='logOutFromUserBtn' value='LogOut'/>");
+            // sign out from USER PAGE function
+            $(document).on("click", "#logOutFromUserBtn", function (e) {
+                e.preventDefault();
+                // $("main").show()
+                auth.signOut().then(function () {
+                    console.log("it's logined out");
+                    $(".UserContainer").hide();
+                    // $("main").show()
 
-  
+                })
+            })
 
         } else { // if not true
-            // console.log("not signed in");
-            auth.signOut();
+            console.log("not signed in");
             $("main").show();
             // $("main").empty();
-            
 
         }
     });
 
-    // $(document).on('click', "#logOutFromUserBtn", function (e) {
-    //     e.preventDefault();
-    //     auth.signOut();
-    //     // $("main").show();
-    // })
-
-    $(document).on("click", "#submitBtn", function(e){
-        e.preventDefault();
-       let UserLoggedPageInputValue =  $("#todoText").val();
-    //    console.log(UserLoggedPageInputValue);
-    db.ref(currentUser).set({
-        UserLoggedPageInputValue: UserLoggedPageInputValue
-    })
-      console.log(currentUser);
-       
-
-    })
-
-    
-    // sign out function
-    $("#logout").on("click", function (e) {
+    // USER PAGE input submit button
+    $(document).on("click", "#submitBtn", function (e) {
         e.preventDefault();
 
-        auth.signOut().then(function () {
-            console.log("it's logined out");
-
+        let UserLoggedPageInputValue = $("#todoText").val();
+        //    console.log(UserLoggedPageInputValue);
+        db.ref(currentUser).set({
+            UserLoggedPageInputValue: UserLoggedPageInputValue
         })
-    })
+        // console.log(currentUser);
 
+    })
 
     // register button here initialize user inputs value from 
     $("#resgisterBtn").on("click", (e) => {
@@ -87,12 +82,9 @@ $(document).ready(function () {
                     console.log(error);
                 }
             })
-
         }
-
-
-
     });
+
     // login user
     $("#login").on("click", function (e) {
         e.preventDefault();
@@ -102,7 +94,8 @@ $(document).ready(function () {
 
         auth.signInWithEmailAndPassword(email, password).catch(err => {
             if (err) {
-                console.log(err);
+                console.log(err.message);
+                alert(err.message)
 
             }
         })

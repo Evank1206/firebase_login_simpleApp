@@ -9,3 +9,15 @@ div{
 div label{
     padding: 10px;
 }
+
+.UserContainer{
+    width: 80%;
+    margin: 50px auto;
+    text-align: center;
+    /* background-color: grey;
+    height: 90vh; */
+}
+
+#todoText, #submitBtn, #logOutFromUserBtn{
+    margin-top: 30px;
+}

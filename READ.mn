@@ -1,0 +1,15 @@
+firebase database:
+* open firebase on browser, create database 
+* in html: link the create database's sdk link above js import file,
+ If creating user authentication copy and past below same sdk link 2times which are
+ firebase.database.js
+ firebase.auth.js 
+* in app.js file:  firebase fonfiguration form create database's
+* initialize firebase
+* initialize firebase.database & firebase.auth // it's optional
+* auth.onAuthStateChanged()
+
+if create user
+*createUserWithEmailAndPassword();
+*signInWithEmailAndPassword();
+*auth.signOut() etc........
