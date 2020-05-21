@@ -18,6 +18,7 @@ $(document).ready(function () {
     const auth = firebase.auth();
 
     let currentUser = "";
+    let dbText = "";
 
     // onAuthStateChanges() function
     auth.onAuthStateChanged(user => {
@@ -44,7 +45,14 @@ $(document).ready(function () {
                     // $("main").show()
 
                 })
+            });
+            db.ref(`${currentUser}`).on("value", snap => {
+                console.log(snap.val().UserLoggedPageInputValue);
+                dbText = snap.val().UserLoggedPageInputValue;
+                 $(".UserContainer").append(`<h1>${dbText}</h1>`)
             })
+           
+
 
         } else { // if not true
             console.log("not signed in");
@@ -64,6 +72,7 @@ $(document).ready(function () {
             UserLoggedPageInputValue: UserLoggedPageInputValue
         })
         // console.log(currentUser);
+        db.ref
 
     })
 
